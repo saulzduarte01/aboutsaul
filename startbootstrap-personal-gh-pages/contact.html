@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Number guessing game by Saul Duarte" />
+    <meta name="author" content="Saul Duarte" />
+    <title>Guess the Number - Saul Duarte</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet" />
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column h-100 bg-light">
+    <main class="flex-shrink-0">
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+        <div class="container px-5">
+          <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Saul Duarte</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+              <li class="nav-item"><a class="nav-link" href="projects.html">Get Know Me</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Number Game</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Game Section -->
+      <section class="py-5">
+        <div class="container px-5 mb-5">
+          <div class="text-center mb-5">
+            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Guess the Number</span></h1>
+            <p class="lead mb-4">I'm thinking of a number between 1 and 100</p>
+            <div class="mx-auto" style="max-width: 400px">
+              <input class="form-control text-center fs-4 mb-3" type="number" id="guessInput" placeholder="Enter your guess" />
+              <button class="btn btn-primary w-100 mb-3" onclick="checkGuess()">Submit</button>
+              <div id="result" class="text-center fs-5 fw-bold"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-4 mt-auto">
+      <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+          <div class="col-auto">
+            <div class="small m-0">Copyright &copy; Saul Duarte 2025</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="js/scripts.js"></script>
+
+    <script>
+      const secretNumber = Math.floor(Math.random() * 100) + 1;
+
+      function checkGuess() {
+        const input = document.getElementById("guessInput").value;
+        const resultDiv = document.getElementById("result");
+        const guess = parseInt(input);
+
+        if (isNaN(guess)) {
+          resultDiv.innerHTML = '<p class="text-danger">Please enter a valid number.</p>';
+          return;
+        }
+
+        if (guess < 1 || guess > 100) {
+          resultDiv.innerHTML = '<p class="text-danger">Number must be between 1 and 100.</p>';
+        } else if (guess === secretNumber) {
+          resultDiv.innerHTML = '<p class="text-success">Correct! The number was ' + secretNumber + '.</p>';
+        } else if (guess < secretNumber) {
+          resultDiv.innerHTML = '<p class="text-warning">Too low! Try again.</p>';
+        } else {
+          resultDiv.innerHTML = '<p class="text-warning">Too high! Try again.</p>';
+        }
+      }
+    </script>
+  </body>
+</html>
